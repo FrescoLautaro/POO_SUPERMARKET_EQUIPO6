@@ -9,10 +9,26 @@
  */
 public class PrimeraNecesidad {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        // TODO code application logic here
+     private int desc;
+
+    public PrimeraNecesidad(int desc, String nombre, double precio, boolean precioCuidado) {
+        super(nombre, precio, precioCuidado);
+        this.desc = desc;
+    }
+
+    public double CalcularDesc() {
+        double prodTotal = 0;
+        if () {
+            
+        }
+        return prodTotal;
+    }
+
+    public int getDesc() {
+        return desc;
+    }
+
+    public void setDesc(int desc) {
+        this.desc = desc;
     }
 }
