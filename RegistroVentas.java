@@ -9,10 +9,40 @@
  */
 public class RegistroVentas {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        // TODO code application logic here
+    private ArrayList<Venta> listVentas = new ArrayList<>();
+
+    public RegistroVentas() {
+    }
+
+    public double Calcular_total_ventas() {
+        double total = 0;
+        for (Venta v : listVentas) {
+            total += v.Calcular_venta();
+
+        }
+        return total;
+    }
+
+    public double ImporteDescuento() {
+        double TotalDescontado = 0;
+        for (Venta v : listVentas) {
+            TotalDescontado += v.importeTotalDesc();
+
+        }
+
+        return TotalDescontado;
+    }
+    
+    public void Mostrar_ventas(){
+        
+    
+    }
+
+    public ArrayList<Venta> getListVentas() {
+        return listVentas;
+    }
+
+    public void setListVentas(ArrayList<Venta> listVentas) {
+        this.listVentas = listVentas;
     }
 }
