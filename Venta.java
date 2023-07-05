@@ -8,11 +8,10 @@
  * @author ET36
  */
 public class Venta {
-
    private LocalDate fecha;
     private static int cantTickets;
     private int numeroTicket;
-     private ArrayList<Producto> listProductos = new ArrayList<>();
+    private ArrayList<Producto> listProductos = new ArrayList<>();
 
     public Venta(LocalDate fecha, int numeroTicket) {
         this.fecha = fecha;
@@ -27,6 +26,33 @@ public class Venta {
     
         return Totalventa;
     }
+    
+    public int cant_producto_PN(){
+        int cant_PN = 0;
+        for(Producto p : listProductos){
+            if(p.getTipoProd().equals("PN")){
+                cant_PN++;
+            
+            }
+        
+        }
+    return cant_PN;
+    
+    }
+    
+    public int cant_producto_PC(){
+        int cant_PC = 0;
+        for(Producto p : listProductos){
+         if(p.isPrecioCuidado()){
+             cant_PC++;
+         }
+         
+        }
+    
+    return cant_PC;
+    }
+    
+    
     
     public double importeTotalDesc(){
         double descontado=0;
@@ -71,4 +97,5 @@ public class Venta {
     public void setListProductos(ArrayList<Producto> listProductos) {
         this.listProductos = listProductos;
     }
+
 }
