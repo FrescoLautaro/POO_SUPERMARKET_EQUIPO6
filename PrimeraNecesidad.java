@@ -14,14 +14,16 @@ public class PrimeraNecesidad {
     public PrimeraNecesidad(int desc, String nombre, double precio, boolean precioCuidado) {
         super(nombre, precio, precioCuidado);
         this.desc = desc;
+        double prodTotal = precio -(precio*desc/100);
+        
     }
 
     public double CalcularDesc() {
+        int descontado=0;
         double prodTotal = 0;
-        if () {
-            
-        }
-        return prodTotal;
+        prodTotal = precio -(precio*desc/100);
+        descontado=precio-prodTotal;
+        return descontado;
     }
 
     public int getDesc() {
@@ -32,3 +34,4 @@ public class PrimeraNecesidad {
         this.desc = desc;
     }
 }
+
