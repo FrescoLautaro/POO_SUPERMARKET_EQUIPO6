@@ -22,7 +22,9 @@ public class Producto {
     
     public String getTipoProd(){
         String tipo="";
-        if
+        if (precioCuidado == true) 
+            CalcularDesc();
+        else;
         return tipo;
     }
     
