@@ -1,37 +1,18 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Other/File.java to edit this template
- */
+package supermarket;
 
-/**
- *
- * @author ET36
- */
-public class PrimeraNecesidad {
 
-     private int desc;
+public class PrimeraNecesidad extends Producto {
 
-    public PrimeraNecesidad(int desc, String nombre, double precio, boolean precioCuidado) {
-        super(nombre, precio, precioCuidado);
-        this.desc = desc;
-        double prodTotal = precio -(precio*desc/100);
-        
+    public PrimeraNecesidad(String nombre, double precio, boolean esPrecioCuidado) {
+        super(nombre, precio, esPrecioCuidado);
     }
 
-    public double CalcularDesc() {
-        int descontado=0;
-        double prodTotal = 0;
-        prodTotal = precio -(precio*desc/100);
-        descontado=precio-prodTotal;
-        return descontado;
-    }
+    @Override
+    public void aplicarDescuento(double descuento) {
 
-    public int getDesc() {
-        return desc;
-    }
+        double descuentoPrimeraNecesidad = precio * 0.1;
+        this.precio -= descuentoPrimeraNecesidad;
 
-    public void setDesc(int desc) {
-        this.desc = desc;
     }
 }
 
