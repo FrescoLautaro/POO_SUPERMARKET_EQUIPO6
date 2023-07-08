@@ -1,101 +1,76 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Other/File.java to edit this template
- */
+package supermarket;
 
-/**
- *
- * @author ET36
- */
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
 public class Venta {
-   private LocalDate fecha;
-    private static int cantTickets;
-    private int numeroTicket;
-    private ArrayList<Producto> listProductos = new ArrayList<>();
 
-    public Venta(LocalDate fecha, int numeroTicket) {
-        this.fecha = fecha;
-        this.numeroTicket = numeroTicket;
+    private LocalDate fecha;
+    private static int numeroVentaActual = 1;
+    private int numeroVenta;
+    private List<Producto> productos;
+    private double descuentoTotal;
+
+    public Venta() {
+        this.fecha = LocalDate.now();
+        this.productos = new ArrayList<>();
+        this.numeroVenta = numeroVentaActual++;
+        this.descuentoTotal = 0;
     }
-    
-    public double Calcular_venta(){
-        double Totalventa = 0;
-        for(Producto p: listProductos){
-            Totalventa+=p.getPrecio();
+
+    public void agregarProducto(Producto producto) {
+        productos.add(producto);
+        if (producto instanceof PrimeraNecesidad) {
+            double descuento = producto.getPrecio() * 0.1;
+            descuentoTotal += descuento;
+            producto.aplicarDescuento(descuento);
         }
-    
-        return Totalventa;
     }
-    
-    public int cant_producto_PN(){
-        int cant_PN = 0;
-        for(Producto p : listProductos){
-            if(p.getTipoProd().equals("PN")){
-                cant_PN++;
-            
-            }
-        
-        }
-    return cant_PN;
-    
-    }
-    
-    public int cant_producto_PC(){
-        int cant_PC = 0;
-        for(Producto p : listProductos){
-         if(p.isPrecioCuidado()){
-             cant_PC++;
-         }
-         
-        }
-    
-    return cant_PC;
-    }
-    
-    
-    
-    public double importeTotalDesc(){
-        double descontado=0;
-        
-        for(Producto p: listProductos){
-        descontado+=pn.CalcularDesc();
-        
-        }
-        return descontado;
-    }
-    
-    
 
     public LocalDate getFecha() {
         return fecha;
     }
 
-    public void setFecha(LocalDate fecha) {
-        this.fecha = fecha;
+    public int getNumeroVenta() {
+        return numeroVenta;
     }
 
-    public static int getCantTickets() {
-        return cantTickets;
+    public double calcularTotalVenta() {
+        double total = 0;
+        for (Producto producto : productos) {
+            total += producto.getPrecio();
+        }
+        return total;
     }
 
-    public static void setCantTickets(int cantTickets) {
-        Venta.cantTickets = cantTickets;
+    public void mostrarProductos() {
+        for (Producto producto : productos) {
+            System.out.println("Producto: " + producto.getNombre() + " - Precio: $" + producto.getPrecio());
+        }
     }
 
-    public int getNumeroTicket() {
-        return numeroTicket;
+    public int getCantidadProductosPrimeraNecesidad() {
+        int cantidad = 0;
+        for (Producto producto : productos) {
+            if (producto instanceof PrimeraNecesidad) {
+                cantidad++;
+            }
+        }
+        return cantidad;
     }
 
-    public void setNumeroTicket(int numeroTicket) {
-        this.numeroTicket = numeroTicket;
+    public int getCantidadProductosPrecioCuidado() {
+        int cantidad = 0;
+        for (Producto producto : productos) {
+            if (producto.esPrecioCuidado()) {
+                cantidad++;
+            }
+        }
+        return cantidad;
     }
 
-    public ArrayList<Producto> getListProductos() {
-        return listProductos;
+    public double getDescuentoTotal() {
+        return descuentoTotal;
     }
-
-    public void setListProductos(ArrayList<Producto> listProductos) {
-        this.listProductos = listProductos;
-    }
-
 }
